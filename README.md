@@ -1,4 +1,4 @@
-# Amazon – Ecommerce Full-Stack Web System 🛒
+# Amazon – Ecommerce Full-Stack Web System
 
 > Amazon-like E-commerce Web Application (Full-Stack Web App)
 > Developed by **Ahmed Medhat**
@@ -8,7 +8,7 @@
 </div>
 
 ---
-## 📋 Project Overview
+## Project Overview
 **Amazon** is a full-stack e-commerce web application built to deliver a seamless online shopping experience for customers and powerful management tools for sellers and administrators. The platform allows users to browse products, manage carts and orders, track shipments in real time, and complete secure payments.
 
 For sellers and administrators, the system provides comprehensive tools to manage products, inventory, orders, users, and analytics. Built with scalability and reliability in mind, the platform ensures high performance, accurate inventory tracking, and a smooth, secure shopping experience for all users.
@@ -18,12 +18,8 @@ For sellers and administrators, the system provides comprehensive tools to manag
 **License:** Proprietary – All rights reserved
 
 ---
-## 🚀 Live Demo
-> Coming soon...
-
----
-# 📱 Web System Screenshots
-## 🔐 Authentication Screens
+# Web System Screenshots
+## Authentication Screens
 ### Login Page
 ![Login Page](./public/auth/auth%20(sign%20up%20page).png)
 *User authentication interface*
@@ -32,7 +28,7 @@ For sellers and administrators, the system provides comprehensive tools to manag
 ![Registration](./public/auth/auth%20(create%20account).png)
 *New user registration form*
 
-## 👥 User Screens
+## User Screens
 ### User Dashboard
 ![User Homepage](./public/user/user%20(homepage).png)
 *Main user hompage*
@@ -46,7 +42,7 @@ For sellers and administrators, the system provides comprehensive tools to manag
 ![User Dashboard](./public/user/user%20(user%20dashboard).png)
 *Main user interface with navigation*
 
-## ⚙️ Admin Screens
+## Admin Screens
 ### Admin Dashboard
 ![Admin Dashboard](./public/admin/admin%20(admin%20dashboard).png)
 *Administrator control panel*
@@ -61,9 +57,9 @@ For sellers and administrators, the system provides comprehensive tools to manag
 *Admin product management interface*
 
 ---
-## 🏗️ Project Structure
+## Project Structure
 ### Backend (ExpressJS – MVC Architecture)
-```
+```js
 server/
 ├── app/
 │   ├── controllers/
@@ -113,7 +109,7 @@ server/
 ```
 
 ### Frontend (ReactJS + Bootstrap/Tailwind)
-```
+```js
 client/
 ├── node_modules/
 ├── public/
@@ -205,113 +201,8 @@ client/
 └── vite.config.js
 ```
 
-### Database (MySql)
-```
-┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
-│      users      │       │     products    │       │       cart      │
-├─────────────────┤       ├─────────────────┤       ├─────────────────┤
-│ user_id (PK)    │───────│ product_id (PK) │◄──────│ cart_id (PK)    │
-│ username        │       │ product_name    │       │ user_id (FK)    │
-│ first_name      │       │ product_category│       │ product_id (FK) │
-│ last_name       │       │ product_desc    │       │ quantity        │
-│ email           │       │ product_image   │       │ created_at      │
-│ password_hash   │       │ product_quantity│       │ updated_at      │
-│ role            │       │ product_price   │       └─────────────────┘
-│ created_at      │       │ product_status  │               ▲
-│ updated_at      │       │ created_at      │               │
-│ last_login      │       │ updated_at      │               │
-└─────────────────┘       └─────────────────┘               │
-       │                          ▲                         │
-       │                          │                         │
-       ▼                          │                         │
-┌─────────────────┐               │              ┌─────────────────┐
-│     orders      │               │              │   order_items   │
-├─────────────────┤               │              ├─────────────────┤
-│ order_id (PK)   │◄──────────────┼──────────────│ order_item_id   │
-│ user_id (FK)    │               │              │ order_id (FK)   │
-│ total_amount    │               │              │ product_id (FK) │
-│ status          │               │              │ quantity        │
-│ shipping_address│               │              │ price_at_purchase│
-│ payment_method  │               │              │ created_at      │
-│ payment_status  │               │              └─────────────────┘
-│ created_at      │               │                       ▲
-│ updated_at      │               │                       │
-└─────────────────┘               │                       │
-                                  │                       │
-                           ┌─────────────────┐            │
-                           │     reviews     │            │
-                           ├─────────────────┤            │
-                           │ review_id (PK)  │            │
-                           │ user_id (FK)    │────────────┘
-                           │ product_id (FK) │────────────┐
-                           │ rating          │            │
-                           │ comment         │            │
-                           │ created_at      │            │
-                           │ updated_at      │            │
-                           └─────────────────┘            │
-                                  ▲                       │
-                                  │                       │
-                                  └───────────────────────┘
-```
-
 ---
-## 🏗️ System Architecture Diagram
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Client (React Frontend)                  │
-│                    • Bootstrap/Tailwind UI                  │
-│                    • Responsive Design                      │
-│                    • JWT Token Management                   │
-└─────────────┬─────────────────────────────────────┬─────────┘
-              │                                     │
-              ▼                                     ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    API Gateway / Load Balancer              │
-│                    • Rate Limiting                          │
-│                    • CORS Management                        │
-│                    • Request Routing                        │
-└─────────────┬─────────────────────────────────────┬─────────┘
-              │                                     │
-              ▼                                     ▼
-┌────────────────────────────────────────────────────────────┐
-│                    Express.js Server                       │
-│  ┌─────────────┐  ┌─────────────┐  ┌───────────────────┐   │
-│  │   Routes    │  │ Middlewares │  │     Controllers   │   │
-│  │ • API       │  │ • Auth      │  │ • Business Logic  │   │
-│  │ • Web       │  │ • Validation│  │ • Data Processing │   │
-│  │ • Protected │  │ • Admin     │  │ • Error Handling  │   │
-│  └──────┬──────┘  └──────┬──────┘  └──────────┬────────┘   │
-│         │                │                     │           │
-│         └────────────────┼─────────────────────┘           │
-│                          ▼                                 │
-│                 ┌──────────────┐                           │
-│                 │    Models    │                           │
-│                 │ • Data Layer │                           │
-│                 │ • ORM Queries│                           │
-│                 │ • Validation │                           │
-│                 └──────┬───────┘                           │
-└────────────────────────┼───────────────────────────────────┘
-                         ▼
-┌────────────────────────────────────────────────────────────┐
-│                    MySQL Database                          │
-│  ┌─────────────┐  ┌─────────────┐  ┌───────────────────┐   │
-│  │    Users    │  │   Products  │  │      Orders       │   │
-│  │ • Auth Data │  │ • Inventory │  │ • Transactions    │   │
-│  │ • Profiles  │  │ • Pricing   │  │ • Payments        │   │
-│  │ • Roles     │  │ • Categories│  │ • Shipping        │   │
-│  └─────────────┘  └─────────────┘  └───────────────────┘   │
-│                                                            │
-│  ┌─────────────┐  ┌─────────────┐  ┌───────────────────┐   │
-│  │     Cart    │  │ Order Items │  │     Reviews       │   │
-│  │ • Session   │  │ • Line Items│  │ • Ratings         │   │
-│  │ • Temporary │  │ • Pricing   │  │ • Comments        │   │
-│  │ • Merge     │  │ • Taxes     │  │ • Moderation      │   │
-│  └─────────────┘  └─────────────┘  └───────────────────┘   │
-└────────────────────────────────────────────────────────────┘
-```
-
-## 🔄 Workflow & Data Flow
+## Workflow & Data Flow
 ### 1. Authentication Flow
 ```js
 Client → POST /api/auth/login → Auth Controller → User Model → DB
@@ -337,9 +228,9 @@ Client → POST /api/orders → Order Controller → Transaction → Multiple Mo
 ```
 
 ---
-## 🛠️ Technologies Used
+## Technologies Used
 
-### 🖥️ Backend Technologies
+### Backend Technologies
 | Technology                                                                                                                | Purpose                           | Version |
 | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ------- |
 | ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)                | JavaScript Runtime Environment    | 18.x+   |
@@ -356,7 +247,7 @@ Client → POST /api/orders → Order Controller → Transaction → Multiple Mo
 | ![MySQL2](https://img.shields.io/badge/MySQL2-005C84?style=for-the-badge&logo=mysql&logoColor=white)                      | MySQL Database Driver             | 3.x     |
 
 
-### 🎨 Frontend Technologies
+### Frontend Technologies
 | Technology                                                                                                                | Purpose                           | Version |
 | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ------- |
 | ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)                       | Frontend JavaScript Library       | 18.x    |
@@ -366,15 +257,15 @@ Client → POST /api/orders → Order Controller → Transaction → Multiple Mo
 | ![Font Awesome](https://img.shields.io/badge/Font_Awesome-528DD7?style=for-the-badge&logo=font-awesome&logoColor=white)   | Icon Library                      | 6.x     |
 
 
-### 🗄️ Database & Tools
+### Database & Tools
 | Technology                                                                                                                | Purpose                           | Version |
 | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ------- |
 | ![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)                        | Relational Database               | 8.x     |
 | ![MySQL Workbench](https://img.shields.io/badge/MySQL_Workbench-4479A1?style=for-the-badge&logo=mysql&logoColor=white)    | Database Design & Management      | 8.x     |
 
 ---
-## ✨ Core Features
-### 🔐 Authentication & Authorization
+## Core Features
+### Authentication & Authorization
 * JWT‑based authentication
 * Role‑based access control (User / Admin)
 * Secure password hashing with **bcrypt**
@@ -382,7 +273,7 @@ Client → POST /api/orders → Order Controller → Transaction → Multiple Mo
 * Secure session handling
 
 ---
-### 📅 Product Management
+### Product Management
 **User Capabilities**
 - Order products for the available products
 - View personal cart
@@ -394,13 +285,13 @@ Client → POST /api/orders → Order Controller → Transaction → Multiple Mo
 - Monitor products activity
 ---
 
-### ⚡ Real‑Time Capabilities
+### Real‑Time Capabilities
 * Live time slot availability
 * Instant product confirmation
 * Real‑time status updates
 * Interactive product table preview
 
-### 🎨 User Interface
+### User Interface
 * Fully responsive design (Bootstrap / Tailwind)
 * Interactive booking calendar
 * Clear status indicators
@@ -408,14 +299,14 @@ Client → POST /api/orders → Order Controller → Transaction → Multiple Mo
 * Accessible and intuitive navigation
 
 ---
-## 🚀 Getting Started
+## Getting Started
 ### Prerequisites
 * **Node.js** v18 or higher
 * **MySQL** v8 or higher
 * **npm**
 
 ---
-## 📖 API Documentation
+## API Documentation
 ### Authentication
 * `POST /api/auth/register` – Register new user
 * `POST /api/auth/login` – User login
@@ -429,7 +320,7 @@ Client → POST /api/orders → Order Controller → Transaction → Multiple Mo
 * `PUT /api/products/:product_id` – Update products (Admins only)
 * `DELETE /api/products/:id` – Delete products (Admins only) 
 
-### 🛒 Cart Management
+### Cart Management
 * `GET /api/cart` – Get user's cart
 * `GET /api/cart/summary` – Get cart summary (total items, quantity, price)
 * `POST /api/cart` – Add product to cart
@@ -438,7 +329,7 @@ Client → POST /api/orders → Order Controller → Transaction → Multiple Mo
 * `DELETE /api/cart/:cart_id` – Remove item from cart
 * `DELETE /api/cart` – Clear entire cart
 
-### 🛒 Order Management
+### Order Management
 * `GET /api/orders/user` – Get user's orders
 * `GET /api/orders/:order_id` – Get user specific order
 * `GET /api/orders/` – Display all orders for management (Admins Only)
@@ -450,7 +341,7 @@ Client → POST /api/orders → Order Controller → Transaction → Multiple Mo
 * `DELETE /api/orders/:order_id` – Delete Order (Admins Only)
 
 ---
-## 🔒 Security Features
+## Security Features
 * Helmet.js security headers
 * CORS configuration
 * CSRF protection
@@ -460,7 +351,7 @@ Client → POST /api/orders → Order Controller → Transaction → Multiple Mo
 * Secure JWT refresh mechanism 
 
 ---
-## 📱 Dashboards
+## Dashboards
 ### User Dashboard
 * Booking history
 * Upcoming reservations
@@ -476,11 +367,11 @@ Client → POST /api/orders → Order Controller → Transaction → Multiple Mo
 * Platform configuration
 
 ---
-## 🤝 Contributing
+## Contributing
 This is a **proprietary project**. External contributions are **not accepted**.
 
 ---
-## 📄 License
+## License
 **PROPRIETARY LICENSE**
 © 2026 Ahmed Medhat. All Rights Reserved.
 This project is a personal, non-commercial work created solely for the purpose of demonstrating full-stack web development skills.
@@ -492,11 +383,11 @@ The name**Amazon** is used strictly as a conceptual reference for learning and p
 This software and associated documentation are proprietary and confidential. No part of this project may be reproduced, distributed, or transmitted in any form without prior written permission from the author.
 
 ---
-## 💭 A Personal Note
+## A Personal Note
 *This system design represents my **first major step into backend engineering** following industry best practices. **While I acknowledge this isn't a 100% complete, fully integrated business service, this project marks a significant milestone in my career development.***
 
 *As I transition from learning concepts to implementing real-world systems, I'm embracing the complexity and responsibility that comes with backend engineering. **This Amazon-like e-commerce platform isn't just another CRUD application it's my foundation for understanding how robust, scalable systems are built.***
 
 ---
-## 👥 Author
+## Author
 * **Ahmed Medhat** – Junior Backend Engineer
